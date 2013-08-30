@@ -10,7 +10,7 @@ function Start () {
 function Update () {
 	
 	
-	if(	Input.GetMouseButton(0)  && Input.touchCount==1 ){
+	if(	Input.GetMouseButton(0)  /*&& Input.touchCount==1*/ ){
 		
 		//print (transform.eulerAngles);
 		
@@ -18,12 +18,12 @@ function Update () {
 			//print("mouse Position: "+Input.mousePosition);
 			var newPosition = Input.mousePosition;
 			
-			var    angleX = previousPosition.y - newPosition.y; 
+			var    angleX = -previousPosition.y + newPosition.y; 
 			var    angleY = previousPosition.x - newPosition.x; 
 			//	print(angleX);	
 			
 			if(rotate) {
-				transform.Rotate(  Vector3( -angleX*0.2,angleY *0.2 ,0),Space.World );
+				transform.Rotate(  Vector3( angleX*0.2,angleY *0.2 ,0),Space.World );
 			}
 			previousPosition = newPosition;
 			rotate =true;

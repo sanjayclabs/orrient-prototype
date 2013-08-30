@@ -12,7 +12,7 @@ function Start () {
 
 function Update () {
 	
-	if (Input.touchCount >= 2 ) {
+	/*if (Input.touchCount >= 2 ) {
 		var touch0:Touch;
 		var touch1:Touch;
 		var newDistance: float;
@@ -45,5 +45,22 @@ function Update () {
 	}
 	else {
 		zoomNow = false;
-	}     
+	} 
+	*/
+	
+	if (Input.GetAxis("Mouse ScrollWheel")> 0){
+fov1 -=Time.deltaTime*300 ;// fovSpeed--;
+
+}
+
+if (Input.GetAxis("Mouse ScrollWheel")< 0){
+
+fov1 += Time.deltaTime*300;// fov ++;
+
+}
+if(fov1<5) fov1=5;
+if(fov1>60) fov1 =60;
+camera1.fieldOfView =fov1;
+
+//	camera1.fieldOfView = Input.GetAxis("Mouse ScrollWheel");    
 }
