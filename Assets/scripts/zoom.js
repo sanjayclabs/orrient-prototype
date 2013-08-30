@@ -3,9 +3,11 @@
 var previousDistance:float =0;
 var camera1:Camera;
 var zoomNow : boolean;
+var fov1:float;
 
 function Start () {
 	camera1 = this.gameObject.GetComponent(Camera);
+	fov1 =camera1.fieldOfView;
 }
 
 function Update () {
@@ -24,19 +26,20 @@ function Update () {
 			var gap:float = newDistance - previousDistance;
 			
 			
-			if(camera1.fieldOfView >=20 && camera1.fieldOfView <=60 && zoomNow) {
-				camera1.fieldOfView -=gap*0.1;
+			if(fov1 >=20 && fov1 <=60 && zoomNow) {
+				fov1 -=gap*0.1;
 			}
-			else if(camera1.fieldOfView <20) {
-			 	camera1.fieldOfView =20;
+			 if(fov1 <20) {
+			 	fov1 =20;
 			 }
-			else if(camera1.fieldOfView >60) {
-			 	camera1.fieldOfView =60;
+		    if(fov1 >60) {
+			 	fov1 =60;
 			}
 			
+			camera1.fieldOfView=fov1;
 			previousDistance = newDistance;
 			zoomNow =true;
-			print(gap);
+			//print(gap);
 			
 		} 
 	}
